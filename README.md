@@ -76,19 +76,21 @@ Each kernel follows the same development pipeline:
 ---
 
 ## Repository Structure
+
+```
 mini-leetcuda/
+├── reduction/     # Reduction kernels (naive → optimized → fully optimized)
+├── gemm/          # Matrix multiplication kernels
+├── softmax/       # Softmax + online softmax implementations
+├── layernorm/     # LayerNorm and RMSNorm
+├── attention/     # Attention / FlashAttention-style kernels
 │
-├── reduction/
-├── gemm/
-├── softmax/
-├── layernorm/
-├── attention/
-│
-├── benchmarks/
-├── profiling/
-├── bindings/
-├── tests/
-└── docs/
+├── benchmarks/    # Performance benchmarks
+├── profiling/     # Nsight Systems / Nsight Compute outputs
+├── bindings/      # PyTorch C++/CUDA extensions
+├── tests/         # Correctness tests vs PyTorch
+└── docs/          # Explanations and kernel breakdowns
+```
 
 
 Each kernel folder contains:
