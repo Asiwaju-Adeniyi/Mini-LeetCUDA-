@@ -61,13 +61,13 @@ int main() {
     cudaEventRecord(stop);
     cudaEventSynchronize(stop);
 
-    cudaMemcpy(h_c.data(), d_c, size, cudaMemcpyDeviceToHost);
-
     float gpuDuration = 0.0f;
-
     cudaEventElapsedTime(&gpuDuration, start, stop);
 
     std::cout << gpuDuration << " ms" << std::endl;
+
+        cudaMemcpy(h_c.data(), d_c, size, cudaMemcpyDeviceToHost);
+
 
 
    cudaFree(d_a);
