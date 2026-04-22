@@ -1,5 +1,3 @@
-%%cuda 
-
 #include <algorithm> 
 #include <float.h>
 #include <cuda_runtime.h>
