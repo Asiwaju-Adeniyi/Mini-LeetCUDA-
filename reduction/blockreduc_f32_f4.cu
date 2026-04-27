@@ -39,5 +39,4 @@ __global__ void blockReducf32f4(float *a, float *g, int N) {
     if (tid == 0) 
     atomicadd(g, val);
 
-
 }
