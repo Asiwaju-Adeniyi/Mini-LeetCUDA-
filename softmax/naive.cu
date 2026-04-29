@@ -13,6 +13,27 @@ struct __align__(8) MN {
     float M;
     float N;
 }
+template <const int kWarpSize = WarpSize> 
+__device__ __forceinline__ void online_softmax_reduciton(MD input) {
+    unsigned int mask = 0xffffffff;
+#pragma unroll 
+for (int stride = kWarpSize >> 1; strid >= 1; stride >>=1) {
+    MD other;
+
+    other.M = __shfl_xor_sync(mask, input.M, stride);
+    other.D = __shfl_xor_sync(mask, input.D, stride);
+
+    bool bigger = (input.M > other.M);
+
+    MD biggerM = (bigger) ? input : other;
+    MD smallerM = (bigger) ? other : input;
+    
+    input.D = biggerM.d + smallerM.d * __expf(smallerM.M - biggerM.m);
+    input.M = biggerM.M; 
+
+}
+return input;
+}
 
 template <const int kWarpSize = WarpSize> 
 __device__ __forceinline__ void softmax_sum(float val) {
@@ -31,4 +52,5 @@ __device__ __forceinline__ void softmax_max(float val) {
     }
     return val;
 }
+
 
