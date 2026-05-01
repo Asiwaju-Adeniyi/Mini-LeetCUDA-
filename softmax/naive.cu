@@ -103,9 +103,10 @@ __device__ float block_reduction_sum(float val){
 
 template <const int numThreads = 256> 
 __global__ void softmax_f32 (float *a, float *b, int N) {
-    int idx = threadIdx.x; 
+    int idx = threadIdx.x + blockDim.x * blockIdx.x; 
+
     float a_exp = (idx < N) ? std::exp(a[idx]) : 0.0f;
-    float a_exp_reduc = softmax_warpReduc_sum<numThreads>(a_exp);
+    float a_exp_reduc = block_reduction_sum<numThreads>(a_exp);
 
     b[idx] = a_exp / a_exp_reduc;
 }
