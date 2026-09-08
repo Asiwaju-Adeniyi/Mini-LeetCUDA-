@@ -98,3 +98,13 @@ N-1}`, and nesting becomes Cartesian product. This is called `S`'s
 Example: shape `(3,4)` → `Z_3 × Z_4`, listed fastest-first (colex order):
 `(0,0),(1,0),(2,0),(0,1),(1,1),(2,1),...`
 
+Note: a mode of size 1 gives `Z_1 = {0}` — a dimension that always reads 0,
+still counts toward rank, but adds no extra coordinates.
+
+Other coordinate sets are valid for the same data too — any shape that
+*coarsens* `S` has its own natural coordinates. This is just naming what I
+already saw with box `f`: `(i0,i1,i2)`, `(r,i1)`, and `k` were three
+different shapes' natural coordinates, all describing the same box.
+
+*"Compatibility" (Def 2.7) is mentioned but not defined yet — coming up
+next.*
