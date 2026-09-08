@@ -7,8 +7,10 @@ material, page by page, with my own worked examples.
 | Section | Status | Last updated |
 |---|---|---|
 | 1.2 Canonical loops | done | 2026-08-24 |
-| 1.3 Tensors and folding | done | — |
-| 2.1 Tuples and HTuples | done | — |
+| 1.3 Tensors and folding | done |  |
+| 2.1 Tuples and HTuples | done |  |
+| 2.2 Shape | done |  |
+| 2.2.1 Coordinate Sets | Ongoing |  |
 ...
 
 ## 1. Introduction and motivation
