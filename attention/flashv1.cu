@@ -33,6 +33,6 @@ shared memory. CUDA pointer size is naturally 64bits (inheriting from C/C++), bu
            :: "r"(dstPtr), "l"(srcPtr)
        );
     }
-} 
+}
 
 

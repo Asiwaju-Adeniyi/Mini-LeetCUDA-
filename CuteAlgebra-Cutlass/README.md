@@ -74,3 +74,27 @@ tuple on P's side demands a matching-rank tuple on S's side, then recurse.
 **Why congruence/weak-congruence matter:** weak congruence is exactly what
 lets a shape accept both full ND coordinates and a coarser 1D coordinate at
 once (2.2) — same idea as splitting a thread index into warp/lane by hand.
+
+### 2.2 Shape
+
+A shape is officially just an `HTuple(Z⁺)` — the formal name for what I'd
+already been building with folding. Its size `|S|` is the product of its
+elements (recursive if nested): `|((2,2),2)| = (2×2)×2 = 8`.
+
+Big idea: the *same* data can be addressed at different "zoom levels" —
+fully split apart, partially glued, or fully flat — and all of these are
+legal because each coarser shape is weakly congruent to the refined one.
+This is exactly *why* a generic algorithm (GEMM, COPY) can accept any
+oddly-folded tensor: the real shape just has to coarsen into the shape the
+algorithm expects.
+
+### 2.2.1 Coordinate Sets (so far)
+
+The coordinate set of a shape `S`, written `Z_S`, is built by the same
+recipe as the shape itself — swap each number `N` for its range `{0,...,
+N-1}`, and nesting becomes Cartesian product. This is called `S`'s
+**natural coordinates**.
+
+Example: shape `(3,4)` → `Z_3 × Z_4`, listed fastest-first (colex order):
+`(0,0),(1,0),(2,0),(0,1),(1,1),(2,1),...`
+
